@@ -11,7 +11,7 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
       tee /etc/apt/sources.list.d/haproxy.list
 
 RUN cat /etc/apt/sources.list && \
-    apt-get install apt-transport-https ca-certificates && \
+    #apt-get install apt-transport-https ca-certificates && \
     sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian-security jessie/updates main contrib non-free' /etc/apt/sources.list && \
     sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-backports main contrib non-free' /etc/apt/sources.list && \
     sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-updates main contrib non-free' /etc/apt/sources.list && \
