@@ -10,10 +10,10 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
     echo deb http://haproxy.debian.net jessie-backports-1.5 main | \
       tee /etc/apt/sources.list.d/haproxy.list
 
-RUN sed -i '1i\deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib' /etc/apt/sources.list && \
-    sed -i '1i\deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib' /etc/apt/sources.list && \
-    sed -i '1i\deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib' /etc/apt/sources.list && \
-    sed -i '1i\deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib' /etc/apt/sources.list && \
+RUN sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian-security jessie/updates main contrib non-free' /etc/apt/sources.list && \
+    sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-backports main contrib non-free' /etc/apt/sources.list && \
+    sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-updates main contrib non-free' /etc/apt/sources.list && \
+    sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie main contrib non-free' /etc/apt/sources.list && \
     apt-get update -yqq && \
     apt-get install -yqq software-properties-common && \
     apt-get install -yqq git mercurial supervisor && \
