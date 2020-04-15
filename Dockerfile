@@ -20,7 +20,7 @@ RUN dpkg -i /tmp/dpkg/*.deb && \
     echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-backports main contrib non-free' >> /etc/apt/sources.list && \
     echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian-security jessie/updates main contrib non-free' >> /etc/apt/sources.list && \
     cat /etc/apt/sources.list && \
-    #apt-get clean all && \
+    apt-get clean all && \
     apt-get update -yqq && \
     apt-get install -yqq software-properties-common && \
     apt-get install -yqq git mercurial supervisor && \
