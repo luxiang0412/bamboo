@@ -16,6 +16,7 @@ RUN cat /etc/apt/sources.list && \
     sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-backports main contrib non-free' /etc/apt/sources.list && \
     sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-updates main contrib non-free' /etc/apt/sources.list && \
     sed -i '1i\deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie main contrib non-free' /etc/apt/sources.list && \
+    cat /etc/apt/sources.list && \
     apt-get update -yqq && \
     apt-get install -yqq software-properties-common && \
     apt-get install -yqq git mercurial supervisor && \
