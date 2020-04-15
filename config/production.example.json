@@ -1,6 +1,7 @@
 {
   "Marathon": {
-    "Endpoint": "http://marathon1:8080,http://marathon2:8080,http://marathon3:8080"
+    "Endpoint": "http://marathon1:8080,http://marathon2:8080,http://marathon3:8080",
+    "UseEventStream": true
   },
 
   "Bamboo": {
