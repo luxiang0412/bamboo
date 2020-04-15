@@ -9,9 +9,8 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
       apt-key add - && \
     echo deb http://haproxy.debian.net jessie-backports-1.5 main | \
       tee /etc/apt/sources.list.d/haproxy.list
-
-RUN apt-get update && \
-    apt-get install apt-transport-https ca-certificates && \
+ADD ./apt-transport-https_1.0.9.8.5_amd64.deb /
+RUN dpkg -i /apt-transport-https_1.0.9.8.5_amd64.deb && \
     echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie main contrib non-free' > /etc/apt/sources.list && \
     echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-updates main contrib non-free' >> /etc/apt/sources.list && \
     echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-backports main contrib non-free' >> /etc/apt/sources.list && \
