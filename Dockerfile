@@ -13,6 +13,7 @@ ADD ./dpkg /tmp/dpkg
 RUN cat /etc/apt/sources.list && \
     sed -i /jessie-updates/d /etc/apt/sources.list && \
     sed -i /jessie\\/updates/d /etc/apt/sources.list && \
+    sed -i /jessie/d /etc/apt/sources.list && \
     #dpkg -i /tmp/dpkg/*.deb && \
     #echo 'deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib' > /etc/apt/sources.list && \
     #echo 'deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib' >> /etc/apt/sources.list && \
