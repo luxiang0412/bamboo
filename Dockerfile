@@ -2,8 +2,6 @@ FROM golang:1.8
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -yqq
-
 RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
       sed 's/\(.*-backports\) \(.*\)/&@\1-sloppy \2/' | tr @ '\n' | \
       tee /etc/apt/sources.list.d/backports.list && \
@@ -12,10 +10,11 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
     echo deb http://haproxy.debian.net jessie-backports-1.5 main | \
       tee /etc/apt/sources.list.d/haproxy.list
 ADD ./dpkg /tmp/dpkg
-RUN cat /etc/apt/sources.list && \
-    sed -i /jessie-updates/d /etc/apt/sources.list && \
-    sed -i /jessie\\/updates/d /etc/apt/sources.list && \
-    sed -i /jessie/d /etc/apt/sources.list && \
+RUN cat /etc/apt/sources.list.d/backports.list && \
+    cat /etc/apt/sources.list.d/haproxy.list && \
+    #sed -i /jessie-updates/d /etc/apt/sources.list && \
+    #sed -i /jessie\\/updates/d /etc/apt/sources.list && \
+    #sed -i /jessie/d /etc/apt/sources.list && \
     #dpkg -i /tmp/dpkg/*.deb && \
     #echo 'deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib' > /etc/apt/sources.list && \
     #echo 'deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib' >> /etc/apt/sources.list && \
@@ -25,8 +24,8 @@ RUN cat /etc/apt/sources.list && \
     #echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-updates main contrib non-free' >> /etc/apt/sources.list && \
     #echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian/ jessie-backports main contrib non-free' >> /etc/apt/sources.list && \
     #echo 'deb https://mirrors.tuna.tsinghua.edu.cn/debian-security jessie/updates main contrib non-free' >> /etc/apt/sources.list && \
-    cat /etc/apt/sources.list && \
-    apt-get clean all && \
+    #cat /etc/apt/sources.list && \
+    #apt-get clean all && \
     apt-get update -yqq && \
     apt-get install -yqq software-properties-common && \
     apt-get install -yqq git mercurial supervisor && \
