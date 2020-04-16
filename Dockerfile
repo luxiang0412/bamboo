@@ -11,6 +11,8 @@ RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
       tee /etc/apt/sources.list.d/haproxy.list
 ADD ./dpkg /tmp/dpkg
 RUN cat /etc/apt/sources.list && \
+    sed -i /jessie-updates/d /etc/apt/sources.list && \
+    sed -i /jessie\\/updates/d /etc/apt/sources.list && \
     #dpkg -i /tmp/dpkg/*.deb && \
     #echo 'deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib' > /etc/apt/sources.list && \
     #echo 'deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib' >> /etc/apt/sources.list && \
