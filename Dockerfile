@@ -2,16 +2,14 @@ FROM golang:1.8
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
-      sed 's/\(.*-backports\) \(.*\)/&@\1-sloppy \2/' | tr @ '\n' | \
-      tee /etc/apt/sources.list.d/backports.list && \
-    curl https://haproxy.debian.net/bernat.debian.org.gpg | \
-      apt-key add - && \
-    echo deb http://haproxy.debian.net jessie-backports-1.5 main | \
-      tee /etc/apt/sources.list.d/haproxy.list
-ADD ./dpkg /tmp/dpkg
 RUN cat /etc/apt/sources.list.d/backports.list && \
     cat /etc/apt/sources.list.d/haproxy.list && \
+    echo 'deb http://httpredir.debian.org/debian jessie main' > /etc/apt/sources.list.d/backports.list && \
+    echo 'deb http://httpredir.debian.org/debian jessie-updates main' >> /etc/apt/sources.list.d/backports.list && \
+    curl https://haproxy.debian.net/bernat.debian.org.gpg | \
+      apt-key add - && \
+    echo deb http://haproxy.debian.net jessie-backports-1.8 main | \
+      tee /etc/apt/sources.list.d/haproxy.list && \
     #sed -i /jessie-updates/d /etc/apt/sources.list && \
     #sed -i /jessie\\/updates/d /etc/apt/sources.list && \
     #sed -i /jessie/d /etc/apt/sources.list && \
@@ -29,7 +27,7 @@ RUN cat /etc/apt/sources.list.d/backports.list && \
     apt-get update -yqq && \
     apt-get install -yqq software-properties-common && \
     apt-get install -yqq git mercurial supervisor && \
-    apt-get install -yqq haproxy -t jessie-backports-1.5 && \
+    apt-get install -yqq haproxy=1.8.\* && \
     rm -rf /var/lib/apt/lists/*
 
 ADD builder/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
