@@ -4,7 +4,7 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN cat /etc/apt/sources.list.d/backports.list && \
     cat /etc/apt/sources.list.d/haproxy.list && \
-    echo 'deb http://httpredir.debian.org/debian jessie main' > /etc/apt/sources.list.d/backports.list && \
+    echo deb http://httpredir.debian.org/debian jessie main | tee /etc/apt/sources.list.d/backports.list && \
     echo 'deb http://httpredir.debian.org/debian jessie-updates main' >> /etc/apt/sources.list.d/backports.list && \
     curl https://haproxy.debian.net/bernat.debian.org.gpg | \
       apt-key add - && \
