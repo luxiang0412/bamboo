@@ -2,7 +2,7 @@ FROM golang:1.8
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt update yqq
+RUN apt-get update yqq
 
 RUN echo deb http://httpredir.debian.org/debian jessie-backports main | \
       sed 's/\(.*-backports\) \(.*\)/&@\1-sloppy \2/' | tr @ '\n' | \
